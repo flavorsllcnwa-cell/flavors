@@ -1,0 +1,19 @@
+# OS files
+Thumbs.db
+.DS_Store
+
+# Node
+node_modules/
+
+# Logs
+*.log
+
+# Editor
+.vscode/
+*.suo
+*.user
+
+# Misc
+.env
+dist/
+coverage/
