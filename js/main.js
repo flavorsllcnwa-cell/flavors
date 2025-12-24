@@ -3,11 +3,16 @@ document.addEventListener('DOMContentLoaded', function () {
   document.querySelectorAll('.day-card').forEach(function (card) {
     var img = card.querySelector('.menu-image img');
     var highlightEl = card.querySelector('.day-highlight');
-    if (!img || !highlightEl) return;
-    var highlights = (img.dataset && img.dataset.highlights) ? img.dataset.highlights.trim() : '';
+    if (!highlightEl) return;
 
-    if (!highlights && img.alt) {
-      highlights = img.alt;
+    // Prefer data-highlights on the card (useful when there's no image), then image dataset, then image alt
+    var highlights = '';
+    if (card.dataset && card.dataset.highlights) {
+      highlights = card.dataset.highlights.trim();
+    } else if (img && img.dataset && img.dataset.highlights) {
+      highlights = img.dataset.highlights.trim();
+    } else if (img && img.alt) {
+      highlights = img.alt.trim();
     }
 
     if (!highlights) {
